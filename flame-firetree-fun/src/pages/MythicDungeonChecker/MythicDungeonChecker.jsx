@@ -14,9 +14,25 @@ class MythicDungeonChecker extends Component {
     loggedIn: false,
   };
 
+  grab_data = async () => {
+    await fetch(
+      "https://us.api.blizzard.com/data/wow/journal-instance/759?namespace=static-us",
+      {
+        headers: {
+          authorization: "bearer " + this.state.access_token,
+        },
+      }
+    )
+      .catch((e) => console.log(e))
+      .then((response) => response.json())
+      .then((res) => {
+        console.log(res);
+        console.log(res.encounters[2].name.es_ES);
+      });
+  };
+
   async set_new_token() {
     await fetch(BNET_TOKEN_URI, {
-      body: "grant_type=client_credentials",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
@@ -59,6 +75,7 @@ class MythicDungeonChecker extends Component {
           <div style={{ display: "flex", justifyContent: "center" }}>
             <h3>Checking if the little flamies are doing their wittle 15s</h3>
           </div>
+          <button onClick={this.grab_data}>CLICK ME!</button>
         </div>
       );
     } else {
