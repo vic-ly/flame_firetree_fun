@@ -12,22 +12,19 @@ class MythicDungeonChecker extends Component {
   state = {
     access_token: null,
     loggedIn: false,
+    journal_data: {},
   };
 
   grab_data = async () => {
     await fetch(
-      "https://us.api.blizzard.com/data/wow/journal-instance/759?namespace=static-us",
-      {
-        headers: {
-          authorization: "bearer " + this.state.access_token,
-        },
-      }
+      "https://us.api.blizzard.com/profile/wow/character/spirestone/roguen/mythic-keystone-profile/season/1?namespace=profile-us&locale=en_US&access_token=" +
+        this.state.access_token
     )
       .catch((e) => console.log(e))
       .then((response) => response.json())
       .then((res) => {
         console.log(res);
-        console.log(res.encounters[2].name.es_ES);
+        this.setState({ journal_data: res });
       });
   };
 
