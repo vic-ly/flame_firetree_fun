@@ -70,7 +70,9 @@ class MythicDungeonChecker extends Component {
             <h1>Flame +15 Checker</h1>
           </div>
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <h3>Checking if the little flamies are doing their wittle 15s</h3>
+            <h3>
+              Checking if the wittle Flamies are doing their wittle 15's uwu
+            </h3>
           </div>
           <button onClick={this.grab_data}>CLICK ME!</button>
         </div>
