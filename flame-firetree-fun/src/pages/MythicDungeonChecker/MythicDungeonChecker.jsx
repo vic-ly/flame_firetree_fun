@@ -17,7 +17,7 @@ class MythicDungeonChecker extends Component {
 
   grab_data = async () => {
     await fetch(
-      "https://us.api.blizzard.com/profile/wow/character/spirestone/roguen/mythic-keystone-profile/season/1?namespace=profile-us&locale=en_US&access_token=" +
+      "https://us.api.blizzard.com/profile/wow/character/spirestone/zalieria/mythic-keystone-profile/season/2?namespace=profile-us&locale=en_US&access_token=" +
         this.state.access_token
     )
       .catch((e) => console.log(e))
@@ -43,7 +43,9 @@ class MythicDungeonChecker extends Component {
       .then((response) => response.json())
       .then((responseData) => {
         console.log(responseData);
-        Cookies.set("flame_bnet_token", responseData.access_token);
+        Cookies.set("flame_bnet_token", responseData.access_token, {
+          expires: 7,
+        });
         this.setState({
           access_token: responseData.access_token,
           loggedIn: true,
