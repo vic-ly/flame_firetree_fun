@@ -7,8 +7,6 @@ class Dashboard extends Component {
   };
 
   render() {
-    console.log("mtest");
-    console.log(this.props.token);
     return <DashCarousel />;
   }
 }
