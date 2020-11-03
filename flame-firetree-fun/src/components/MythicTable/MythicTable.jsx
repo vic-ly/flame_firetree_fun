@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Table } from "react-bootstrap";
+import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
 
 class MythicTable extends Component {
   constructor(props) {
@@ -39,15 +40,12 @@ class MythicTable extends Component {
         console.log(res);
         didTheyDoIt = this.checkForFifteen(res);
         this.setState({
-          tableBody: this.state.tableBody.concat(
-            <tr key={index}>
-              <td>{char.character.name}</td>
-              <td>{this.capitalize(char.character.realm.slug)}</td>
-              <td>{char.rank}</td>
-              <td>{didTheyDoIt ? "Yes" : "No"}</td>
-              <tc></tc>
-            </tr>
-          ),
+          tableBody: this.state.tableBody.concat({
+            name: char.character.name,
+            realm: this.capitalize(char.character.realm.slug),
+            rank: char.rank,
+            complete: didTheyDoIt ? "Yes" : "No",
+          }),
         });
       });
   };
@@ -73,19 +71,20 @@ class MythicTable extends Component {
 
   render() {
     return (
-      <Table responsive>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Server</th>
-            <th>Guild Rank</th>
-            <th>15 Last Week?</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.state.tableBody !== null ? this.state.tableBody : null}
-        </tbody>
-      </Table>
+      <BootstrapTable ref="table" data={this.state.tableBody}>
+        <TableHeaderColumn dataField="name" isKey={true} dataSort={true}>
+          Name
+        </TableHeaderColumn>
+        <TableHeaderColumn dataField="realm" dataSort={true}>
+          Realm
+        </TableHeaderColumn>
+        <TableHeaderColumn dataField="rank" dataSort={true}>
+          Rank
+        </TableHeaderColumn>
+        <TableHeaderColumn dataField="complete" dataSort={true}>
+          15 Last Week?
+        </TableHeaderColumn>
+      </BootstrapTable>
     );
   }
 }
