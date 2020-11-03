@@ -6,7 +6,6 @@ class MythicTable extends Component {
     super(props);
   }
   state = {
-    raidIndex: 0,
     tableBody: [],
     tableBodyReady: false,
   };
@@ -21,7 +20,11 @@ class MythicTable extends Component {
     return false;
   };
 
-  checkMythicPlus = async (name, realm, char, index, raidInd) => {
+  capitalize = (word) => {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  };
+
+  checkMythicPlus = async (name, realm, char, index) => {
     var didTheyDoIt = false;
     await fetch(
       "https://raider.io/api/v1/characters/profile?region=us&realm=" +
@@ -38,9 +41,8 @@ class MythicTable extends Component {
         this.setState({
           tableBody: this.state.tableBody.concat(
             <tr key={index}>
-              <td>{raidInd}</td>
               <td>{char.character.name}</td>
-              <td>{char.character.realm.slug}</td>
+              <td>{this.capitalize(char.character.realm.slug)}</td>
               <td>{char.rank}</td>
               <td>{didTheyDoIt ? "Yes" : "No"}</td>
               <tc></tc>
@@ -55,13 +57,11 @@ class MythicTable extends Component {
     if (char.rank > 6 || char.character.level < 50) {
       return null;
     }
-    this.state.raidIndex = this.state.raidIndex + 1;
     didTheyDoIt = this.checkMythicPlus(
       char.character.name,
       char.character.realm.slug,
       char,
-      index,
-      this.state.raidIndex
+      index
     );
   };
 
@@ -69,12 +69,13 @@ class MythicTable extends Component {
     this.props.roster_data.map(this.renderCharacter);
   }
 
+  sortByName = () => {};
+
   render() {
     return (
       <Table responsive>
         <thead>
           <tr>
-            <th>#</th>
             <th>Name</th>
             <th>Server</th>
             <th>Guild Rank</th>
