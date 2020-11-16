@@ -10,6 +10,12 @@ class MythicTable extends Component {
     tableBody: [],
     tableBodyReady: false,
   };
+  componentDidUpdate(prevprops) {
+    if (this.props.roster_data !== prevprops.roster_data) {
+      this.setState({ tableBody: [] });
+      this.props.roster_data.map(this.renderCharacter);
+    }
+  }
 
   checkForFifteen = (data) => {
     var i;
