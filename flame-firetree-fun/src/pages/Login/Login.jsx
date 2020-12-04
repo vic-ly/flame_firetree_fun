@@ -39,10 +39,11 @@ class Login extends Component {
         });
       });
   }
-
+  // token may not authorize after expired
   async componentDidMount() {
     if (Cookies.get("flame_bnet_token") === null) {
       await this.set_new_token();
+      console.log("new token set");
     } else {
       this.setState({
         access_token: Cookies.get("flame_bnet_token"),

@@ -10,7 +10,7 @@ class MythicDungeonChecker extends Component {
     serverName: " ",
     guildName: " ",
   };
-
+  // Victor Ly
   get_roster = async () => {
     await fetch(
       "https://us.api.blizzard.com/data/wow/guild/" +
