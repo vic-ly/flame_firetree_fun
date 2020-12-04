@@ -31,7 +31,7 @@ class Login extends Component {
       .then((responseData) => {
         console.log(responseData);
         Cookies.set("flame_bnet_token", responseData.access_token, {
-          expires: 7,
+          expires: 1,
         });
         this.setState({
           access_token: responseData.access_token,
@@ -41,11 +41,12 @@ class Login extends Component {
   }
 
   async componentDidMount() {
-    if (Cookies.get("flame_bnet_token") == null) {
+    if (Cookies.get("flame_bnet_token") === null) {
       await this.set_new_token();
     } else {
       this.setState({
         access_token: Cookies.get("flame_bnet_token"),
+
         loggedIn: true,
       });
     }
