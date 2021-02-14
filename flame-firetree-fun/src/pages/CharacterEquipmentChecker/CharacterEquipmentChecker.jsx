@@ -1,40 +1,47 @@
 import React, { Component } from "react";
-import "./MythicDungeonChecker.css";
+// import "./MythicDungeonChecker.css";
 import Cookies from "js-cookie";
-import MythicTable from "../../components/MythicTable/MythicTable";
+import EquipmentTable from "../../components/EquipmentTable/EquipmentTable";
 import { Form, Button } from "react-bootstrap";
-class MythicDungeonChecker extends Component {
+class CharacterEquipmentChecker extends Component {
   state = {
-    roster_data: {},
-    roster_fetch: false,
     serverName: " ",
-    guildName: " ",
     characterName: " ",
+    equipmentData: [],
+    equipmentBool: false,
   };
-  // Victor Ly
-  get_roster = async () => {
-    await fetch(
-      "https://us.api.blizzard.com/data/wow/guild/" +
+
+  handleServerChange = (event) => {
+    this.setState({ serverName: event.target.value });
+  };
+  handleNameChange = (event) => {
+    this.setState({ characterName: event.target.value });
+  };
+
+  //creating the character equipment API
+
+  get_equipment = async () => {
+    fetch(
+      "https://us.api.blizzard.com/profile/wow/character/" +
         this.state.serverName.toLowerCase().replace("'", "").replace(" ", "-") +
         "/" +
-        this.state.guildName.toLowerCase().replace(" ", "-") +
-        "/roster?namespace=profile-us&locale=en_US&access_token=" +
+        this.state.characterName
+          .toLowerCase()
+          .replace("'", "")
+          .replace(" ", "-") +
+        "/equipment?namespace=profile-us&locale=en_US&access_token=" +
         this.props.token
     )
       .catch((e) => console.log(e))
       .then((response) => response.json())
       .then((res) => {
-        this.setState({ roster_data: res.members, roster_fetch: true });
+        this.setState({
+          equipmentData: res.equipped_items,
+          equipmentBool: true,
+        });
         console.log(res);
       });
   };
-
-  handleChange = (event) => {
-    let obj = {};
-    obj[event.target.placeholder] = event.target.value;
-    this.setState(obj);
-  };
-
   render() {
     return (
       <div
@@ -45,10 +52,10 @@ class MythicDungeonChecker extends Component {
         }}
       >
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <h1>Guild +15 Checker</h1>
+          <h1>Character Checker</h1>
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <h3>Checking if the guildies are doing their 15's</h3>
+          <h3>Checking Guildie's Equipment</h3>
         </div>
         <div
           style={{
@@ -62,28 +69,29 @@ class MythicDungeonChecker extends Component {
               <Form.Control
                 type="text"
                 placeholder="serverName"
-                onChange={this.handleChange}
+                onChange={this.handleServerChange}
               />
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
-              <Form.Label>Guild Name</Form.Label>
+              <Form.Label>Character Name</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="guildName"
-                onChange={this.handleChange}
+                placeholder="characterName"
+                onChange={this.handleNameChange}
               />
             </Form.Group>
           </Form>
-          <button onClick={this.get_roster}>Check!</button>
+          <button onClick={this.get_equipment}>Check!</button>
         </div>
         <div style={{ marginTop: 10 }}>
-          {this.state.roster_fetch ? (
-            <MythicTable roster_data={this.state.roster_data} />
+          {this.state.equipmentBool ? (
+            <EquipmentTable equipmentData={this.state.equipmentData} />
           ) : null}
         </div>
       </div>
     );
   }
 }
-export default MythicDungeonChecker;
+
+export default CharacterEquipmentChecker;

@@ -4,6 +4,7 @@ import { Switch, Route, Link } from "react-router-dom";
 
 import "./NavBar.css";
 import MythicDungeonChecker from "../../pages/MythicDungeonChecker/MythicDungeonChecker";
+import CharacterEquipmentChecker from "../../pages/CharacterEquipmentChecker/CharacterEquipmentChecker";
 import Dashboard from "../../pages/Dashboard/Dashboard";
 import AboutUs from "../../pages/AboutUs/AboutUs";
 
@@ -19,7 +20,7 @@ class NavBar extends Component {
             <Navbar.Brand as={Link} to="/">
               <div style={{ display: "flex", alignItems: "center" }}>
                 <div style={{ marginLeft: 5 }}>
-                  <h1>FLAME FIRETREE</h1>
+                  <h1>World of Warcraft Checker</h1>
                 </div>
               </div>
             </Navbar.Brand>
@@ -34,6 +35,13 @@ class NavBar extends Component {
                   token={this.props.token}
                 >
                   Mythic Check
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  as={Link}
+                  to="/charactercheck"
+                  token={this.props.token}
+                >
+                  Character Check
                 </NavDropdown.Item>
               </NavDropdown>
               <Nav.Link as={Link} to="/aboutus">
@@ -57,8 +65,15 @@ class NavBar extends Component {
               )}
             />
             <Route exact path="/aboutus" component={AboutUs} />
-
             <Route
+              exact
+              path="/charactercheck"
+              component={() => (
+                <CharacterEquipmentChecker token={this.props.access_token} />
+              )}
+            />
+            <Route
+              //cannot find out fix
               render={function () {
                 return <p>Not found</p>;
               }}

@@ -44,15 +44,17 @@ class MythicTable extends Component {
       .then((response) => response.json())
       .then((res) => {
         console.log(res);
-        didTheyDoIt = this.checkForFifteen(res);
-        this.setState({
-          tableBody: this.state.tableBody.concat({
-            name: char.character.name,
-            realm: this.capitalize(char.character.realm.slug),
-            rank: char.rank,
-            complete: didTheyDoIt ? "Yes" : "No",
-          }),
-        });
+        if (res.statusCode != 400) {
+          didTheyDoIt = this.checkForFifteen(res);
+          this.setState({
+            tableBody: this.state.tableBody.concat({
+              name: char.character.name,
+              realm: this.capitalize(char.character.realm.slug),
+              rank: char.rank,
+              complete: didTheyDoIt ? "Yes" : "No",
+            }),
+          });
+        }
       });
   };
 

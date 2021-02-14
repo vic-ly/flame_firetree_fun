@@ -1,0 +1,10 @@
+potential project additions:
+
+1. achievment tracking
+2. covenant tracking
+3. mount data
+4. pet data
+5. ????? collections data
+6. equipment data
+7. pvp tracker
+8. soulbinds tracker

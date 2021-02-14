@@ -1,0 +1,58 @@
+for (int i = 0; i < line.length(); i++)
+		{
+			char counter = line[i];
+
+
+			if (counter != ' ')
+			{
+				newLine += counter;
+			}
+			if (counter == '/' && !inQuotation)
+			{
+
+				switch (line[i + 1])
+				{
+					case '/':
+						skip = true;
+						break;
+					case '*':
+						multicomment = true;
+						break;
+					default:
+						cout << "Error" << endl;
+						break;
+				}
+				
+			}
+			// switch cases for encountering the end of a multiline comment
+			else if (counter == '*' && !inQuotation)
+			{
+				switch (line[i + 1])
+				{
+					case '/':
+						
+						if (multicomment)
+						{
+							multicomment = false;
+							skip = true;
+						}
+						else
+						{
+							cout << "Error in line: " << endl;
+						}
+						break;
+					default:
+						break;
+				}
+				
+			}
+
+			// creating a bool inorder to print objects inside of quotations
+			else if (counter == '"')
+			{
+				// set a bool here 
+				inQuotation = !inQuotation;
+				
+			}
+			
+		}
