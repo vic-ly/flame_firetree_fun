@@ -48,7 +48,10 @@ class MythicDungeonChecker extends Component {
           <h1>Guild +15 Checker</h1>
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <h3>Checking if the guildies are doing their 15's</h3>
+          <h3>
+            This tool allows you to sort an entire guild roster to check if a
+            Mythic 15 Dungeon has been completed.
+          </h3>
         </div>
         <div
           style={{
@@ -75,12 +78,26 @@ class MythicDungeonChecker extends Component {
               />
             </Form.Group>
           </Form>
-          <button onClick={this.get_roster}>Check!</button>
         </div>
+
         <div style={{ marginTop: 10 }}>
           {this.state.roster_fetch ? (
             <MythicTable roster_data={this.state.roster_data} />
           ) : null}
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <button
+            type="button"
+            class="btn btn-primary btn-lg w-20"
+            onClick={this.get_roster}
+          >
+            Check!
+          </button>
         </div>
       </div>
     );

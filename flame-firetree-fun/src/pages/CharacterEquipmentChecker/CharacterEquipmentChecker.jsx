@@ -55,7 +55,7 @@ class CharacterEquipmentChecker extends Component {
           <h1>Character Checker</h1>
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <h3>Checking Guildie's Equipment</h3>
+          <h3>This tool checks a player's equipment</h3>
         </div>
         <div
           style={{
@@ -82,12 +82,25 @@ class CharacterEquipmentChecker extends Component {
               />
             </Form.Group>
           </Form>
-          <button onClick={this.get_equipment}>Check!</button>
         </div>
         <div style={{ marginTop: 10 }}>
           {this.state.equipmentBool ? (
             <EquipmentTable equipmentData={this.state.equipmentData} />
           ) : null}
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <button
+            type="button"
+            class="btn btn-primary btn-lg w-20"
+            onClick={this.get_equipment}
+          >
+            Check!
+          </button>
         </div>
       </div>
     );

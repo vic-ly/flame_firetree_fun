@@ -12,30 +12,33 @@ class EquipmentTable extends Component {
   };
   componentDidUpdate(prevprops) {
     if (this.props.equipmentData !== prevprops.equipmentData) {
-      this.setState({ tableBody: [] });
-      this.props.equipmentData.map(this.renderEquipment);
+      var tableData = [];
+      for (var i = 0; i < this.props.equipmentData.length; i++) {
+        tableData.push(this.renderEquipment(this.props.equipmentData[i]));
+      }
+      this.setState({ tableBody: tableData });
     }
   }
 
   renderEquipment = (char, index) => {
-    this.setState({
-      tableBody: this.state.tableBody.concat({
-        name: char.name,
-        slot: char.slot.name,
-        level: char.level.value,
-      }),
-    });
-    console.log(this.state.tableBody);
+    return {
+      name: char.name,
+      slot: char.slot.name,
+      level: char.level.value,
+    };
   };
 
   componentDidMount() {
-    console.log(this.props.equipmentData);
-    this.props.equipmentData.map(this.renderEquipment);
+    var tableData = [];
+    for (var i = 0; i < this.props.equipmentData.length; i++) {
+      tableData.push(this.renderEquipment(this.props.equipmentData[i]));
+    }
+    this.setState({ tableBody: tableData });
   }
 
   render() {
     return (
-      <BootstrapTable ref="table" data={this.state.tableBody}>
+      <BootstrapTable ref="table" data={this.state.tableBody} version="4">
         <TableHeaderColumn dataField="name" isKey={true} dataSort={true}>
           Name
         </TableHeaderColumn>
