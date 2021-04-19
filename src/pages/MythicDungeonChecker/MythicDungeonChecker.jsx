@@ -79,10 +79,10 @@ class MythicDungeonChecker extends Component {
         }}
       >
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <h1>Guild Dungeon Checker</h1>
+          <h1 class="textoutline">Guild Dungeon Checker</h1>
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <h3>
+          <h3 class="textoutline">
             This tool allows you to sort an entire guild roster to check if a
             Mythic 15 Dungeon has been completed.
           </h3>
@@ -94,7 +94,9 @@ class MythicDungeonChecker extends Component {
           }}
         >
           <Form>
-            <Form.Label>Server Name</Form.Label>
+            <Form.Label style={{ fontSize: "25px" }} class="textoutline">
+              Server Name
+            </Form.Label>
             <div style={{ display: "flex", width: "100%" }}>
               <Select
                 options={this.state.realms}
@@ -103,7 +105,9 @@ class MythicDungeonChecker extends Component {
               />
             </div>
             <Form.Group controlId="formBasicPassword">
-              <Form.Label>Guild Name</Form.Label>
+              <Form.Label style={{ fontSize: "25px" }} class="textoutline">
+                Guild Name
+              </Form.Label>
               <Form.Control
                 type="text"
                 placeholder="guildName"

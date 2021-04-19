@@ -92,10 +92,10 @@ class CharacterEquipmentChecker extends Component {
         }}
       >
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <h1>Character Checker</h1>
+          <h1 class="textoutline">Character Checker</h1>
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <h3>This tool checks a player's equipment</h3>
+          <h3 class="textoutline">This tool checks a player's equipment</h3>
         </div>
 
         <div
@@ -105,7 +105,9 @@ class CharacterEquipmentChecker extends Component {
           }}
         >
           <Form>
-            <Form.Label>Server Name</Form.Label>
+            <Form.Label style={{ fontSize: "25px" }} class="textoutline">
+              Server Name
+            </Form.Label>
             <div
               style={{
                 display: "flex",
@@ -121,7 +123,9 @@ class CharacterEquipmentChecker extends Component {
               </div>
             </div>
             <Form.Group controlId="formBasicPassword">
-              <Form.Label>Character Name</Form.Label>
+              <Form.Label style={{ fontSize: "25px" }} class="textoutline">
+                Character Name
+              </Form.Label>
               <Form.Control
                 type="text"
                 placeholder="characterName"

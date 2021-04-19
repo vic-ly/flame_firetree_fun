@@ -3,6 +3,7 @@ import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { Switch, Route, Link } from "react-router-dom";
 
 import "./NavBar.css";
+import "../../App.css";
 import MythicDungeonChecker from "../../pages/MythicDungeonChecker/MythicDungeonChecker";
 import CharacterEquipmentChecker from "../../pages/CharacterEquipmentChecker/CharacterEquipmentChecker";
 import Dashboard from "../../pages/Dashboard/Dashboard";
@@ -35,7 +36,7 @@ class NavBar extends Component {
               />
               <Navbar.Brand as={Link} to="/">
                 <div style={{ display: "flex", alignItems: "center" }}>
-                  <div style={{ marginLeft: 5 }}>
+                  <div style={{ marginLeft: 5 }} class="textoutline">
                     <h1>World of Warcraft Checker</h1>
                   </div>
                 </div>
@@ -43,21 +44,21 @@ class NavBar extends Component {
             </div>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="ml-auto">
+              <Nav className="ml-auto textoutline">
                 <NavDropdown title="Utilities" id="basic-nav-dropdown">
                   <NavDropdown.Item
                     as={Link}
                     to="/mythiccheck"
                     token={this.props.token}
                   >
-                    Mythic Check
+                    <div style={{ fontSize: "32px" }}>Mythic Check</div>
                   </NavDropdown.Item>
                   <NavDropdown.Item
                     as={Link}
                     to="/charactercheck"
                     token={this.props.token}
                   >
-                    Character Check
+                    <div style={{ fontSize: "32px" }}>Character Check</div>
                   </NavDropdown.Item>
                 </NavDropdown>
                 <Nav.Link as={Link} to="/aboutus">

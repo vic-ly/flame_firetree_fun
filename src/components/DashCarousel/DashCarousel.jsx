@@ -23,6 +23,14 @@ class DashCarousel extends Component {
   render() {
     return (
       <div>
+        <div class="text-center textoutline" style={{}}>
+          <h1>Welcome to the World of Warcraft Checker!</h1>
+          <p style={{ fontSize: "28px" }}>
+            To get started, select one of the tools in the top right hand
+            corner!
+          </p>
+        </div>
+
         <Carousel activeIndex={this.state.index} onSelect={this.handleSelect}>
           <Carousel.Item>
             <img
