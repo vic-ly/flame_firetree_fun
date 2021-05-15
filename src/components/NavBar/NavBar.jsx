@@ -84,6 +84,7 @@ class NavBar extends Component {
               )}
             />
             <Route exact path="/aboutus" component={AboutUs} />
+
             <Route
               exact
               path="/charactercheck"
@@ -92,7 +93,6 @@ class NavBar extends Component {
               )}
             />
             <Route
-              //cannot find out fix
               render={function () {
                 return <p>Not found</p>;
               }}
